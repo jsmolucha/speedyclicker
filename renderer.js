@@ -7,6 +7,7 @@ const insert = document.querySelector("#tester")
 const playable = document.querySelector(".game-container")
 const spawn = document.querySelector("#test-spawn")
 
+
 const upper = Math.floor(playable.getBoundingClientRect().top)
 const bottom = Math.floor(playable.getBoundingClientRect().bottom)
 
@@ -35,6 +36,7 @@ spawn.addEventListener('click', (event) => {
     console.warn(`clicked obj ${iter++}`)
     console.log(`removed @ x${object.getBoundingClientRect().top} y${object.getBoundingClientRect().left}`)
     object.remove();
+
     ipcRenderer.send("create:gameWindow", {
     
     })
@@ -42,6 +44,15 @@ spawn.addEventListener('click', (event) => {
   })
 })
 
+document.addEventListener('DOMContentLoaded', () => {
+  const closeBtn = document.querySelector("#close-external-window")
+
+  closeBtn.addEventListener('click', (event) => {
+    ipcRenderer.send("closeNewWindow")
+  })
+
+})
+  
 function getTopX(max, min) {
   return Math.floor(Math.random() * (max - min +1 )) + min;
 }
@@ -53,10 +64,6 @@ function getLeftY(max, min) {
 dialogClose.addEventListener('click', (event) => {
   dialog.close();
 })
-
-
-
-
 
 ipcRenderer.on("process:done", () => {
     console.warn("done!")

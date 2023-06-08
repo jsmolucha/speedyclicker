@@ -118,6 +118,13 @@ ipcMain.on('create:gameWindow', (e, args)=> {
   
 })
 
+ipcMain.on('closeNewWindow', () => {
+  console.log("closing")
+  if(newWindow) {
+    newWindow.close()
+  }
+})
+
 function getScreen() {
   
   mainWindow.webContents.send('process:done')
