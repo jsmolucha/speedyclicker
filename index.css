@@ -23,3 +23,11 @@ dialog {
 dialog::backdrop {
   backdrop-filter: blur(2px);
 }
+
+.game-container {
+  border: 1px solid white;
+  width: 99dvw;
+  height: 88dvh;
+  margin: 0;
+  padding: 0;
+}
