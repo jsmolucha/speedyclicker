@@ -1,0 +1,21 @@
+{
+  "name": "speedyclick",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "author": "Jakub",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^25.0.0"
+  },
+  "dependencies": {
+    "electronmon": "^2.0.2",
+    "fs-extra": "^11.1.1",
+    "os": "^0.1.2"
+  
+  }
+}

@@ -1,0 +1,25 @@
+body {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+}
+
+h1 {
+  color: whitesmoke;
+}
+
+dialog {
+  width:300px;
+  height: 200px;
+  border: 2px solid;
+  border-radius: 8px;
+}
+
+dialog::backdrop {
+  backdrop-filter: blur(2px);
+}
