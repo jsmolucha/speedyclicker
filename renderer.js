@@ -24,6 +24,7 @@ window.addEventListener("load", (event) => {
   console.log(`playable: w=${xBounds}, h=${yBounds}`)
 
 })
+
 spawn.addEventListener('click', (event) => {
   var object = document.createElement('button')
   object.id = "the-object"
@@ -34,7 +35,9 @@ spawn.addEventListener('click', (event) => {
     console.warn(`clicked obj ${iter++}`)
     console.log(`removed @ x${object.getBoundingClientRect().top} y${object.getBoundingClientRect().left}`)
     object.remove();
-
+    ipcRenderer.send("create:gameWindow", {
+    
+    })
     
   })
 })
@@ -52,9 +55,6 @@ dialogClose.addEventListener('click', (event) => {
 })
 
 
-ipcRenderer.send("excel:process", {
-    hi
-})
 
 
 

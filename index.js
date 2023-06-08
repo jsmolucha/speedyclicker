@@ -4,7 +4,8 @@
 //reminder... dont put the FUCKING {BRACKETS} around ES module imports
 
 const { app, BrowserWindow, ipcMain, shell, Menu, screen, dialog} = require('electron');
-const path = require('path')
+const path = require('path');
+const { compileFunction } = require('vm');
 const isMac = process.platform === 'darwin';
 const isDev = process.env.NODE_ENV !== 'production';
 
@@ -30,6 +31,20 @@ const createWindow = () => {
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
+}
+
+function createGameWindow() {
+  newWindow = new BrowserWindow({
+    fullscreen:true,
+    preload: path.join(__dirname, 'preload.js'),
+
+  })
+
+  newWindow.loadFile('test.html')
+
+  newWindow.on('closed', () => {
+    newWindow = null;
+  })
 }
 
 // This method will be called when Electron has finished
@@ -97,9 +112,9 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit()
 })
 
-ipcMain.on('excel:process', (e, args)=> {
+ipcMain.on('create:gameWindow', (e, args)=> {
   console.log("haha ok")
-  getScreen()
+  createGameWindow();
   
 })
 
