@@ -3,9 +3,8 @@
 // Modules to control application life and create native browser window)
 //reminder... dont put the FUCKING {BRACKETS} around ES module imports
 
-const { app, BrowserWindow, ipcMain, shell, Menu, screen, dialog} = require('electron');
+const {app, BrowserWindow, ipcMain, shell, Menu, screen, dialog} = require('electron');
 const path = require('path');
-const { compileFunction } = require('vm');
 const isMac = process.platform === 'darwin';
 const isDev = process.env.NODE_ENV !== 'production';
 
@@ -33,6 +32,7 @@ const createWindow = () => {
   // mainWindow.webContents.openDevTools()
 }
 
+/* 
 function createGameWindow() {
   newWindow = new BrowserWindow({
     fullscreen:true,
@@ -46,7 +46,7 @@ function createGameWindow() {
     newWindow = null;
   })
 }
-
+ */
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
@@ -118,20 +118,25 @@ ipcMain.on('create:gameWindow', (e, args)=> {
   
 })
 
-ipcMain.on('closeNewWindow', () => {
-  console.log("closing")
-  if(newWindow) {
-    newWindow.close()
-  }
+ipcMain.on('goFullScreen', () => {
+  mainWindow.setFullScreen(true);
 })
 
-function getScreen() {
-  
-  mainWindow.webContents.send('process:done')
+ipcMain.on('exitFullScreen', () => {
+  mainWindow.setFullScreen(false);
+  exitFsOk();
+})
+
+ipcMain.on('timer3s', () =>{
+  setTimeout(() => {
+    mainWindow.webContents.send('timer:done')
+  }, 3000)
+
+})
+
+function exitFsOk() {
+  mainWindow.webContents.send('exitFs:done')
 }
-
-  
-
 
 app.on('window-all-closed', () => {
     app.quit()
