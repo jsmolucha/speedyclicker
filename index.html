@@ -1,26 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <link rel="stylesheet" href="index.css" />
-    <script src="renderer.js" defer></script>
-    <title>SpeedyClick</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tauri App</title>
+    <script type="module" src="/main.js" defer></script>
   </head>
+
   <body>
     <div id="header">
       <h1 id="title">SpeedyClick</h1>
-      <!-- <button id="test-spawn">SPAWN</button> -->
-      <button id="close-external-window">open fs</button>
+      <button id="open-fullscreen-window">Go Fullscreen</button>
     </div>
     <dialog id="dialog">
       <h2 id="dialogid">How to Use</h2>
       <button id="dialog-close">Got it!</button>
     </dialog>
+    <div id="game-starter-prop">
+      <p id="start-message">Press the button to start the countdown</p>
+      <button id="start-button">Start<button/>
+    </div>
     <div class="game-container">
      <!--This is where the objects will spawn-->
     </div>
-    
   </body>
 </html>
