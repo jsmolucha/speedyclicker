@@ -1,5 +1,3 @@
-const {appWindow} = window.__TAURI__.window;
-
 const modal = document.querySelector("#modal")
 const dialog = document.querySelector("#dialog")
 const dialogClose = document.querySelector("#dialog-close")
@@ -8,6 +6,7 @@ const startOp = document.querySelector("#open-fullscreen-window")
 const header = document.querySelector("#header")
 const startCountdown = document.querySelector("#start-button")
 const starter = document.querySelector("#game-starter-prop")
+const elem = document.documentElement
 
 var running = false
 
@@ -64,11 +63,11 @@ function startGame() {
     header.style.display = "none"
     starter.hidden = false;
     playable.hidden = false;
-    appWindow.setFullscreen(true);
+    elem.requestFullscreen()
 
     if (running === true) {
       console.log(`Game was already running: ${running}`)
-      appWindow.setFullscreen(true)
+      elem.requestFullscreen()
 
     } else {
       startCountdown.addEventListener('click', () => {
@@ -80,7 +79,7 @@ function startGame() {
 }
 
 function closeGame() {
-  appWindow.setFullscreen(false)
+  document.exitFullscreen()
 }
 
 const upper = Math.floor(playable.getBoundingClientRect().top)
